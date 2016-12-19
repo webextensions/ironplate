@@ -1,0 +1,26 @@
+{
+  "name": "ironplate",
+  "version": "0.0.0",
+  "description": "A boilerplate for developing Node JS application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No test specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webextensions/ironplate.git"
+  },
+  "keywords": [
+    "boilerplate",
+    "node",
+    "js",
+    "application",
+    "app"
+  ],
+  "author": "Priyank Parashar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/webextensions/ironplate/issues"
+  },
+  "homepage": "https://github.com/webextensions/ironplate#readme"
+}
