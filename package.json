@@ -4,7 +4,24 @@
   "description": "A boilerplate for developing Node JS application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"No test specified\""
+    "test": "./node_modules/.bin/eslint . && ./node_modules/.bin/mocha"
+  },
+  "dependencies": {
+    "cascaded": "^0.0.1",
+    "express": "^4.14.0",
+    "express-avoid-www": "^0.0.1",
+    "express-network-delay": "^0.0.1",
+    "express-redirect-to-https": "^0.0.1",
+    "extend": "^3.0.0",
+    "helmet": "^3.1.0",
+    "local-ip-addresses": "^0.0.1",
+    "lodash": "^4.17.2",
+    "note-down": "^0.0.3",
+    "serve-favicon": "^2.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^3.12.2",
+    "mocha": "^3.2.0"
   },
   "repository": {
     "type": "git",
