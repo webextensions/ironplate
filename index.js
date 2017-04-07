@@ -23,6 +23,7 @@ var localIpAddresses = require('local-ip-addresses'),
     cascaded = require('cascaded');
 
 var avoidWww = require('express-avoid-www'),
+    hardCodedResponse = require('express-hard-coded-response'),
     networkDelay = require('express-network-delay'),
     redirectToHttps = require('express-redirect-to-https');
 
@@ -91,6 +92,11 @@ var ironplate = {};
 
         if (staticDir) {
             exp.use(favicon(Path.join(staticDir, 'favicon.ico')));
+        }
+
+        var hardCodedResponsesForDebugging = ((options.ironplate || {}).server || {}).hardCodedResponsesForDebugging;
+        if (hardCodedResponsesForDebugging) {
+            exp.use(hardCodedResponse({ verbose: true, conditions: hardCodedResponsesForDebugging, baseDir: projectRootFullPath, console: logger }));
         }
 
         afterSetup(options, exp);
