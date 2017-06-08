@@ -7,22 +7,22 @@
     "test": "./node_modules/.bin/eslint . && ./node_modules/.bin/mocha"
   },
   "dependencies": {
-    "cascaded": "^0.0.1",
-    "express": "^4.14.1",
-    "express-avoid-www": "^0.0.1",
+    "cascaded": "0.0.1",
+    "express": "4.15.3",
+    "express-avoid-www": "0.0.1",
     "express-hard-coded-response": "0.1.2",
-    "express-network-delay": "^0.0.1",
-    "express-redirect-to-https": "^0.0.1",
-    "extend": "^3.0.0",
-    "helmet": "^3.4.1",
-    "local-ip-addresses": "^0.0.1",
-    "lodash": "^4.17.4",
-    "note-down": "^0.0.3",
-    "serve-favicon": "^2.4.0"
+    "express-network-delay": "0.0.1",
+    "express-redirect-to-https": "0.0.1",
+    "extend": "3.0.1",
+    "helmet": "3.6.1",
+    "local-ip-addresses": "0.0.1",
+    "lodash": "4.17.4",
+    "note-down": "0.1.0",
+    "serve-favicon": "2.4.3"
   },
   "devDependencies": {
-    "eslint": "^3.16.1",
-    "mocha": "^3.2.0"
+    "eslint": "3.19.0",
+    "mocha": "3.4.2"
   },
   "repository": {
     "type": "git",
