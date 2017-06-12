@@ -145,8 +145,8 @@ ironplate.start = function (projectRootFullPath, dependencies, receivedConfig, c
             var httpsConfig = {
                 key: fs.readFileSync(Path.join(projectRootFullPath, _httpsSecretsAndSettings.key)),
                 cert: fs.readFileSync(Path.join(projectRootFullPath, _httpsSecretsAndSettings.cert)),
-                passphrase: _httpsSecretsAndSettings.passphrase,    // http://stackoverflow.com/questions/30957793/nodejs-apn-bad-password-read/33291482#33291482
-                                                                    // Also see: http://blog.mgechev.com/2014/02/19/create-https-tls-ssl-application-with-express-nodejs/
+                passphrase: _httpsSecretsAndSettings.passphrase,    /* http://stackoverflow.com/questions/30957793/nodejs-apn-bad-password-read/33291482#33291482
+                                                                       Also see: http://blog.mgechev.com/2014/02/19/create-https-tls-ssl-application-with-express-nodejs/ */
                 requestCert: _httpsSecretsAndSettings.requestCert,
                 rejectUnauthorized: _httpsSecretsAndSettings.rejectUnauthorized
             };

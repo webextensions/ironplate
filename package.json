@@ -1,10 +1,12 @@
 {
   "name": "ironplate",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A boilerplate for developing Node JS application",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/eslint . && ./node_modules/.bin/mocha"
+    "lint": "./node_modules/.bin/eslint .",
+    "mocha": "./node_modules/.bin/mocha",
+    "test": "npm run lint && npm run mocha"
   },
   "dependencies": {
     "express": "4.15.3",
@@ -21,7 +23,7 @@
     "serve-favicon": "2.4.3"
   },
   "devDependencies": {
-    "eslint": "3.19.0",
+    "eslint": "4.0.0",
     "mocha": "3.4.2"
   },
   "repository": {
