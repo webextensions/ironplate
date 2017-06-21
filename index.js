@@ -13,6 +13,7 @@ var Path = require('path'),
 var extend = require('extend'),
     _ = require('lodash'),
     express = require('express'),
+    compression = require('compression'),
     helmet = require('helmet'),
     favicon = require('serve-favicon');
 
@@ -27,12 +28,14 @@ var ironplate = {};
 
 ironplate.dependencies = {
     express: express,
+    compression: compression,
     logger: logger
 };
 
 ironplate.start = function (projectRootFullPath, dependencies, receivedConfig, callbacks) {
     dependencies = dependencies || {};
     var express = dependencies.express || ironplate.dependencies.express,
+        compression = dependencies.compression || ironplate.dependencies.compression,
         logger = dependencies.logger || ironplate.dependencies.logger;
 
     var defaultConfig = require('./config/default-config.js');
@@ -73,6 +76,8 @@ ironplate.start = function (projectRootFullPath, dependencies, receivedConfig, c
     var networkDelayRange = _serverConfig.networkDelay || {};
     exp.use(networkDelay(networkDelayRange.minimum, networkDelayRange.maximum));
 
+    exp.use(compression());
+
     if (_httpServerConfig.redirectToHttps) {
         exp.use(redirectToHttps({
             httpsPort: _httpsServerConfig.port,
@@ -100,6 +105,7 @@ ironplate.start = function (projectRootFullPath, dependencies, receivedConfig, c
 
     if (staticDir) {
         // Setting static server
+        logger.verbose('Setting up static server for path ' + staticDir);
         exp.use(express.static(staticDir, {
             dotfiles: 'ignore',                 // "." folders should be not be accessible directly
             maxAge: 365 * 24 * 60 * 60 * 1000   // 1 year

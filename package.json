@@ -9,6 +9,7 @@
     "test": "npm run lint && npm run mocha"
   },
   "dependencies": {
+    "compression": "1.6.2",
     "express": "4.15.3",
     "express-avoid-www": "0.0.1",
     "express-network-delay": "0.0.1",
