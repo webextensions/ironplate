@@ -105,7 +105,7 @@ ironplate.start = function (projectRootFullPath, dependencies, receivedConfig, c
 
     if (staticDir) {
         // Setting static server
-        logger.verbose('Setting up static server for path ' + staticDir);
+        logger.info('Setting up static server for path ' + staticDir);
         exp.use(express.static(staticDir, {
             dotfiles: 'ignore',                 // "." folders should be not be accessible directly
             maxAge: 365 * 24 * 60 * 60 * 1000   // 1 year
