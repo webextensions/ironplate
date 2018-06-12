@@ -5,7 +5,6 @@
 var logger = require('note-down');
 
 var Path = require('path'),
-    os = require('os'),
     https = require('https'),
     http = require('http'),
     fs = require('fs');
@@ -17,7 +16,12 @@ var extend = require('extend'),
     helmet = require('helmet'),
     favicon = require('serve-favicon');
 
-var localIpAddresses = require('local-ip-addresses');
+var localIpAddressesAndHostnames = [];
+try {
+    localIpAddressesAndHostnames = require('local-ip-addresses-and-hostnames').getLocalIpAddressesAndHostnames();
+} catch (e) {
+    // do nothing
+}
 
 var hardCodedResponse = require('express-hard-coded-response'),
     networkDelay = require('express-network-delay'),
@@ -59,7 +63,8 @@ ironplate.start = function (projectRootFullPath, dependencies, receivedConfig, c
 
     var emptyFn = function () {};
     var beforeSetup = callbacks.beforeSetup || emptyFn,
-        afterSetup = callbacks.afterSetup || emptyFn;
+        afterSetup = callbacks.afterSetup || emptyFn,
+        afterServerInitiation = callbacks.afterServerInitiation || emptyFn;
 
     var exp = express();
 
@@ -121,8 +126,7 @@ ironplate.start = function (projectRootFullPath, dependencies, receivedConfig, c
         }
 
         server.listen(portNumber, function() {
-            var host = os.hostname();
-            var localhostPaths = [].concat(['localhost', _serverConfig.url.hostname.value, host]).concat(localIpAddresses);
+            var localhostPaths = [].concat([_serverConfig.url.hostname.value]).concat(localIpAddressesAndHostnames);
             localhostPaths = _.uniq(localhostPaths);
 
             if (localhostPaths.length > 1) {
@@ -146,6 +150,8 @@ ironplate.start = function (projectRootFullPath, dependencies, receivedConfig, c
         logger.warn('Running in HTTPS mode only and not starting the HTTP mode (because both, HTTP and HTTPS are enabled, but have same port number in configuration)');
     }
     if (useHttps || useHttp) {
+        var httpServerObject,
+            httpsServerObject;
         if (useHttps) {
             // http://stackoverflow.com/questions/21397809/create-a-trusted-self-signed-ssl-cert-for-localhost-for-use-with-express-node/21398485#21398485
             var httpsConfig = {
@@ -156,11 +162,15 @@ ironplate.start = function (projectRootFullPath, dependencies, receivedConfig, c
                 requestCert: _httpsSecretsAndSettings.requestCert,
                 rejectUnauthorized: _httpsSecretsAndSettings.rejectUnauthorized
             };
-            registerServer('https', useHttpsPortNumber, httpsConfig);
+            httpsServerObject = registerServer('https', useHttpsPortNumber, httpsConfig);
         }
         if (useHttp) {
-            registerServer('http', useHttpPortNumber);
+            httpServerObject = registerServer('http', useHttpPortNumber);
         }
+        afterServerInitiation(config, exp, {
+            httpServer: httpServerObject,
+            httpsServer: httpsServerObject
+        });
     } else {
         logger.warnHeading('Warning: HTTPS & HTTP, both the modes are disabled in the configuration');
     }
