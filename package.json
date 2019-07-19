@@ -9,23 +9,23 @@
     "test": "npm run lint && npm run mocha"
   },
   "dependencies": {
-    "compression": "1.7.4",
-    "express": "4.17.1",
-    "express-avoid-www": "0.0.1",
-    "express-hard-coded-response": "0.1.2",
-    "express-network-delay": "0.0.1",
-    "express-redirect-to-https": "0.0.1",
-    "express-redirect-to-www": "0.0.1",
-    "extend": "3.0.2",
-    "helmet": "3.18.0",
-    "local-ip-addresses-and-hostnames": "0.1.1",
-    "lodash": "4.17.11",
-    "note-down": "0.1.1",
-    "serve-favicon": "2.5.0"
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "express-avoid-www": "~0.0.1",
+    "express-hard-coded-response": "~0.1.5",
+    "express-network-delay": "~0.0.1",
+    "express-redirect-to-https": "~0.1.1",
+    "express-redirect-to-www": "~0.0.1",
+    "extend": "^3.0.2",
+    "helmet": "^3.19.0",
+    "local-ip-addresses-and-hostnames": "~0.1.2",
+    "lodash": "^4.17.15",
+    "note-down": "~0.2.3",
+    "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
-    "eslint": "5.16.0",
-    "mocha": "6.1.4"
+    "eslint": "^6.0.1",
+    "mocha": "^6.2.0"
   },
   "repository": {
     "type": "git",
